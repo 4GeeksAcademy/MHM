@@ -1,7 +1,8 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			condition: []
+			condition: [],
+			video: []
 		},
 		actions: {
 			// Use getActions to call a function within a function

@@ -1,26 +1,46 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
-import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
+	const navigate = useNavigate()
+
+	const token = sessionStorage.getItem("token");
+	console.log(token);
+	const handleClick = (e) => {
+		e.preventDefault();
+		console.log(e.target)
+		actions.login(email, password)
+	}
+	useEffect(() => {
+		if (store.token) navigate("/mainpage")
+	}, [])
 
 	return (
-		<div className="text-center mt-5">
-			<h1>Hello Rigo!!</h1>
-			<p>
-				<img src={rigoImageUrl} />
-			</p>
-			<div className="alert alert-info">
-				{store.message || "Loading message from the backend (make sure your python backend is running)..."}
-			</div>
-			<p>
-				This boilerplate comes with lots of documentation:{" "}
-				<a href="https://start.4geeksacademy.com/starters/react-flask">
-					Read documentation
-				</a>
-			</p>
+		<div className="loginCont">
+			<h1>Welcome to our website!</h1>
+			<h2>We are here to connect you to other people to help with mental health</h2>
+			<h2>If you would like to connect with other people, you can login and if you don't have a account you can make one below</h2>
+			<form className="loginForm">
+				<div className="loginFormContent">
+					<h1>Login</h1>
+
+					<div className="input-field">
+						<input className="myInput" type={"text"} placeholder={'Email'} value={email} onChange={(e) => setEmail(e.target.value)} />
+					</div>
+					<div className="input-field">
+						<input className="myInput" type={'password'} placeholder={'Password'} value={password} onChange={(e) => setPassword(e.target.value)} />
+					</div>
+				</div>
+				<div className="loginFormAction">
+					<button className="formBtn regBtn" onClick={(e) => handleClick(e)}>Login</button>
+				</div>
+				<a href="/signup">Click to sign up</a>
+			</form>
 		</div>
 	);
-};
+}

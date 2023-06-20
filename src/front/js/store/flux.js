@@ -41,6 +41,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 			},
 
+			createUser: async (email, password) => {
+
+			},
+
 			getMessage: async () => {
 				try {
 					// fetching data from the backend

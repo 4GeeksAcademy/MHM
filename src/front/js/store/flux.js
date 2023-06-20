@@ -1,8 +1,11 @@
+import JournalApp from "../component/journalapp.jsx";
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			condition: [],
-			video: []
+			video: [],
+			journalentry: []
 		},
 		actions: {
 			// Use getActions to call a function within a function
@@ -41,6 +44,43 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 			},
 
+			journalEntry: async () => {
+				document.getElementById('journalForm').addEventListener('submit', function (event) {
+					event.preventDefault(); // Prevent the default form submission
+
+					// Retrieve the form data
+					const formData = new FormData(this);
+
+					// Convert the form data to JSON
+					const jsonData = {};
+					for (const [key, value] of formData.entries()) {
+						jsonData[key] = value;
+					}
+
+					// Send a POST request to the Flask endpoint
+					fetch('/journal', {
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json'
+						},
+						body: JSON.stringify(jsonData)
+					})
+						.then(response => {
+							if (response.ok) {
+								alert('Journal entry created successfully');
+								// Clear the form inputs
+								document.getElementById('journalForm').reset();
+							} else {
+								alert('Failed to create journal entry');
+							}
+						})
+						.catch(error => {
+							console.error('Error:', error);
+							alert('An error occurred');
+						});
+				});
+			},
+
 			getMessage: async () => {
 				try {
 					// fetching data from the backend
@@ -52,7 +92,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch (error) {
 					console.log("Error loading message from backend", error);
 				}
-			},
+			}
 		}
 	};
 };

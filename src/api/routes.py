@@ -1,8 +1,6 @@
 import os  
 from flask import Flask ,request, jsonify, Blueprint 
-# from flask_jwt_extended import create_access_token
-# from flask_jwt_extended import get_jwt_identity 
-# from flask_jwt_extended import jwt_required 
+from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
 from api.models import db, User, MentalHealthResources, JournalEntries
 import datetime
 
@@ -45,11 +43,11 @@ def login():
         return jsonify({'message': 'Invalid credentials'}), 401
 
     # create token
-    # expiration = datetime.timedelta(days=3)
-    # access_token = create_access_token(identity= user.id, expires_delta= expiration)
-    # return jsonify({'message': 'Logged in successfully.', 'access_token':access_token}), 200
+    expiration = datetime.timedelta(days=3)
+    access_token = create_access_token(identity= user.id, expires_delta= expiration)
+    return jsonify({'message': 'Logged in successfully.', 'access_token':access_token}), 200
 
-    return jsonify ({'message': 'You have logged in successfully.'})
+    # return jsonify ({'message': 'You have logged in successfully.'})
 
 @api.route('/resource', methods=['GET', 'POST'])
 def resource():

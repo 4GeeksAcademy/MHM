@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import { Button } from "react-bootstrap";
 import { Context } from "../store/appContext";
 
 export const Signup = () => {

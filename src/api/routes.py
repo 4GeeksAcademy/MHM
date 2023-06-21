@@ -81,22 +81,37 @@ def meditation():
     db.session.commit()
     return jsonify(message='Your session is ready.'), 200
 
-@api.route('/journal', methods=['POST'])
+@api.route('/journal', methods=['GET', 'POST'])
 def journal_entries():
-    get_entry = request.get_json()
-    date = get_entry.get("date", None)
-    mood = get_entry.get("mood", None)
-    content = get_entry.get("content", None)
+    if request.method == 'GET':
+        # Handle GET request logic
+        entries = JournalEntries.query.all()
+        entries_data = [
+            {
+                'date': entry.date,
+                'mood': entry.mood,
+                'content': entry.content
+            }
+            for entry in entries
+        ]
+        return jsonify(entries_data), 200
 
-    if not date:
-        return jsonify(message='Date is required'), 400
+    elif request.method == 'POST':
+        # Handle POST request logic
+        get_entry = request.get_json()
+        date = get_entry.get("date", None)
+        mood = get_entry.get("mood", None)
+        content = get_entry.get("content", None)
 
-    new_entry = JournalEntries(date=date, mood=mood, content=content)
+        if not date:
+            return jsonify(message='Date is required'), 400
 
-    try:
-        db.session.add(new_entry)
-        db.session.commit()
-        return jsonify(message='Your new entry is available'), 200
-    except Exception as e:
-        db.session.rollback()
-        return jsonify(message=str(e)), 500
+        new_entry = JournalEntries(date=date, mood=mood, content=content)
+
+        try:
+            db.session.add(new_entry)
+            db.session.commit()
+            return jsonify(message='Your new entry is available'), 200
+        except Exception as e:
+            db.session.rollback()
+            return jsonify(message=str(e)), 500

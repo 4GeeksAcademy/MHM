@@ -1,8 +1,13 @@
+const axios = require('axios');
 const getState = ({ getStore, getActions, setStore }) => {
+
 	return {
 		store: {
+			token: null,
+			cf_url: 'https://3000-4geeksacademy-mhm-xwbjejb9wmj.ws-us100.gitpod.io',
+			cb_url: 'https://3001-4geeksacademy-mhm-xwbjejb9wmj.ws-us100.gitpod.io',
 			condition: [],
-			video: []
+			video: [],
 		},
 		actions: {
 			// Use getActions to call a function within a function
@@ -42,7 +47,72 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			createUser: async (email, password) => {
+				const cb_url = getStore().cb_url;
+				const cf_url = getStore().cf_url;
+				const url = cb_url + "/api/signup";
+				const data = {
+					email: email,
+					password: password,
+				};
+				try {
+					const response = await axios.post(url, data, {
+						headers: {
+							"Content-type": "application/json",
+							"Assess-Control-Allow_Origin": "*"
+						},
+					});
 
+					if (response.status !== 200) {
+						alert("There has been an error");
+						return false;
+					}
+
+					const responseData = response.data;
+
+					if (responseData.status === "true") {
+						window.location.href = cf_url + "/home"
+					}
+
+					return true;
+				} catch (error) {
+					console.error(error);
+				}
+
+			},
+
+			login: async (email, password) => {
+				const cb_url = getStore().cb_url;
+				const url = cb_url + "/api/login";
+				const data = {
+					email: email,
+					password: password,
+				};
+
+				try {
+					const response = await axios.post(url, data, {
+						headers: {
+							"Content-Type": "application/json",
+							"Access-Control-Allow-Origin": "*",
+						},
+					});
+
+					if (response.status !== 200) {
+						alert("There has been an error");
+						return false;
+					}
+
+					const responseData = response.data;
+					sessionStorage.setItem("token", responseData.access_token);
+					responseData.favorites.forEach(f => {
+						f.item = f.item.replace(/'/g, '"');
+						f.item = JSON.parse(f.item);
+					});
+
+					setStore({ token: responseData.access_token, favorites: responseData.favorites, user_name: responseData.user_name });
+					return true;
+				} catch (error) {
+					console.error(error);
+				}
 			},
 
 			getMessage: async () => {

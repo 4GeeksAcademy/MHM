@@ -60,7 +60,7 @@ class MeditationSessions (db.Model):
 class JournalEntries(db.Model):
     __tablename__ = 'journal_entries'
     entry_id = db.Column(db.Integer, primary_key=True)
-    date = db.Column(db.String(255), nullable=False)  # Change the column type to String
+    date = db.Column(db.String(255), nullable=False)
     mood = db.Column(db.String(255))
     content = db.Column(db.Text)
 

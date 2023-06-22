@@ -49,7 +49,6 @@ def login():
     access_token = create_access_token(identity= user.id, expires_delta= expiration)
     return jsonify({'message': 'Logged in successfully.', 'access_token':access_token}), 200
 
-
 @api.route('/resource', methods=['GET', 'POST'])
 def resource():
     get_resource=request.get_json()
@@ -80,9 +79,24 @@ def meditation():
     db.session.commit()
     return jsonify(message='Your session is ready.'), 200
 
-@api.route('/journal', methods=['POST'])
-def journal_entries():
+@api.route('/get_journal', methods=['GET'])
+def get_entries():
+    entries = JournalEntries.query.all()
+    entries_data = [
+        {
+            'date': entry.date,
+            'mood': entry.mood,
+            'content': entry.content
+        }
+        for entry in entries
+    ]
+    return jsonify(entries_data), 200
+
+@api.route('/post_journal', methods=['POST'])
+def post_entries():
+
     get_entry = request.get_json()
+    print (get_entry)
     date = get_entry.get("date", None)
     mood = get_entry.get("mood", None)
     content = get_entry.get("content", None)
@@ -99,3 +113,9 @@ def journal_entries():
     except Exception as e:
         db.session.rollback()
         return jsonify(message=str(e)), 500
+
+@api.route('/all_entries', methods=['GET'])
+def all_journey_entries():
+    all_entries=JournalEntries.query.all()
+    entries_list=list(map(lambda JournalEntries: JournalEntries.serialize(), all_entries))
+    return jsonify(entries_list), 200

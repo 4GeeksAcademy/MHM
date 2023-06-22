@@ -12,7 +12,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		actions: {
 			// Use getActions to call a function within a function
 			getCondition: async () => {
-				axios.get('https://api.nhs.uk/conditions/', {
+				axios.get('https://www.nhs.uk/mental-health/conditions/INT:{condition_id}', {
 					headers: {
 						'subscription-key': 'cc1c63174d5347d1ac10dd551d783a2f'
 					}

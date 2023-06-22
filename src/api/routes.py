@@ -49,7 +49,6 @@ def login():
     access_token = create_access_token(identity= user.id, expires_delta= expiration)
     return jsonify({'message': 'Logged in successfully.', 'access_token':access_token}), 200
 
-    return jsonify ({'message': 'You have logged in successfully.'})
 
 @api.route('/resource', methods=['GET', 'POST'])
 def resource():

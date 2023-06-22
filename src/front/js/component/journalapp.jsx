@@ -10,7 +10,7 @@ export const JournalApp = () => {
     const fetchJournalEntries = async () => {
       try {
         const response = await fetch(
-          "https://3001-4geeksacademy-mhm-v1jlej15f2d.ws-us100.gitpod.io/api/journal"
+          "https://3001-4geeksacademy-mhm-kuqtktwom72.ws-us100.gitpod.io/api/get_journal"
         );
 
         if (!response.ok) {
@@ -21,7 +21,6 @@ export const JournalApp = () => {
         setJournalEntries(data);
       } catch (error) {
         console.error("Error retrieving journal entries:", error);
-        // Handle error cases, such as displaying an error message
       }
     };
 
@@ -35,11 +34,11 @@ export const JournalApp = () => {
 
     try {
       const response = await fetch(
-        "https://3001-4geeksacademy-mhm-v1jlej15f2d.ws-us100.gitpod.io/api/journal",
+        "https://3001-4geeksacademy-mhm-kuqtktwom72.ws-us100.gitpod.io/api/post_journal",
         {
           method: "POST",
           headers: {
-            "Content-Type": "application/json", // Set the Content-Type header to application/json
+            "Content-Type": "application/json",
           },
           body: JSON.stringify(data),
         }
@@ -50,10 +49,8 @@ export const JournalApp = () => {
       }
 
       console.log("Entry created successfully!");
-      // Handle any further actions after the API call, if needed
     } catch (error) {
       console.error("Error creating entry:", error);
-      // Handle error cases, such as displaying an error message
     }
   };
 

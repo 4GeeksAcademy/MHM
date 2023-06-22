@@ -4,8 +4,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			token: null,
-			cf_url: 'https://3000-4geeksacademy-mhm-xwbjejb9wmj.ws-us100.gitpod.io',
-			cb_url: 'https://3001-4geeksacademy-mhm-xwbjejb9wmj.ws-us100.gitpod.io',
+			cf_url: 'https://r-moore98-ideal-space-engine-66775xw6qvvc46gw-3000.preview.app.github.dev',
+			cb_url: 'https://r-moore98-ideal-space-engine-66775xw6qvvc46gw-3001.preview.app.github.dev',
 			condition: [],
 			video: [],
 		},
@@ -55,12 +55,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					password: password,
 				};
 				try {
-					const response = await axios.post(url, data, {
-						headers: {
-							"Content-type": "application/json",
-							"Assess-Control-Allow_Origin": "*"
-						},
-					});
+					const response = await axios.post(url, data)
 
 					if (response.status !== 200) {
 						alert("There has been an error");
@@ -77,7 +72,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch (error) {
 					console.error(error);
 				}
-
 			},
 
 			login: async (email, password) => {
@@ -91,8 +85,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				try {
 					const response = await axios.post(url, data, {
 						headers: {
-							"Content-Type": "application/json",
-							"Access-Control-Allow-Origin": "*",
+							"Content-Type": "application/json"
 						},
 					});
 
@@ -103,10 +96,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					const responseData = response.data;
 					sessionStorage.setItem("token", responseData.access_token);
-					responseData.favorites.forEach(f => {
-						f.item = f.item.replace(/'/g, '"');
-						f.item = JSON.parse(f.item);
-					});
 
 					setStore({ token: responseData.access_token, favorites: responseData.favorites, user_name: responseData.user_name });
 					return true;
@@ -114,7 +103,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error(error);
 				}
 			},
-
 		}
 	};
 };

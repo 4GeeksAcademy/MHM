@@ -109,6 +109,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ token: null });
 				window.location.href = "/";
 			},
+
 		}
 	};
 };

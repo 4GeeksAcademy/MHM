@@ -101,6 +101,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error(error);
 				}
 			},
+			logout: async (email, password) => {
+				const cf_url = getStore.cf_url
+				const token = sessionStorage.removeItem("token");
+				setStore({ token: null });
+				window.location.href = "/";
+			},
+
 		}
 	};
 };

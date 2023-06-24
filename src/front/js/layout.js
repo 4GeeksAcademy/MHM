@@ -6,6 +6,7 @@ import { JournalApp } from "./component/journalapp.jsx";
 import { Home } from "./pages/home";
 import { Signup } from "./pages/signup";
 import { MainPage } from "./pages/mainPage";
+import { Meditation } from "./pages/meditation";
 import injectContext from "./store/appContext";
 
 
@@ -29,6 +30,7 @@ const Layout = () => {
                         <Route element={<Signup />} path="/signup" />
                         <Route element={<MainPage />} path="/mainpage" />
                         <Route element={<JournalApp />} path="/journal" />
+                        <Route element={<Meditation />} path="/meditation"/>
                     </Routes>
                     <Footer />
                 </ScrollToTop>

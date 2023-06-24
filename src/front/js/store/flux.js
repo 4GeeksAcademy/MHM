@@ -1,25 +1,23 @@
 const axios = require('axios');
 const getState = ({ getStore, getActions, setStore }) => {
-
 	return {
 		store: {
 			token: null,
-			cf_url: 'https://r-moore98-ideal-space-engine-66775xw6qvvc46gw-3000.preview.app.github.dev',
-			cb_url: 'https://r-moore98-ideal-space-engine-66775xw6qvvc46gw-3001.preview.app.github.dev',
+			cf_url: 'https://3000-4geeksacademy-mhm-hw2ifnv8p5q.ws-us100.gitpod.io/',
+			cb_url: 'https://3001-4geeksacademy-mhm-hw2ifnv8p5q.ws-us100.gitpod.io/',
 			condition: [],
 			video: [],
 		},
 		actions: {
 			// Use getActions to call a function within a function
-			getCondition: async () => {
-				axios.get('https://www.nhs.uk/mental-health/conditions/INT:{condition_id}', {
+			getCondition: async (condition) => {
+				axios.get(`https://api.nhs.uk/mental-health/conditions/${condition}`, {
 					headers: {
-						'subscription-key': 'cc1c63174d5347d1ac10dd551d783a2f'
+						'subscription-key': process.env.NHS_API_KEY
 					}
 				})
 					.then(response => {
-						const articles = response.data.articles;
-						console.log(articles);
+						setStore({ condition: response.data })
 					})
 					.catch(error => {
 						console.error(error);

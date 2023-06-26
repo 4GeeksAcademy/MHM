@@ -64,62 +64,11 @@ def get_condition(condition):
     except requests.exceptions.RequestException as e:
         return jsonify({'error': 'Internal server error'})
 
-# @api.route('/post_resource', methods=['POST'])
-# def post_resource():
-#     get_resource = request.get_json()
-#     title = get_resource["title"]
-#     description = get_resource["description"]
-#     type = get_resource["type"]
-#     url = get_resource["url"]
-    
-#     # Store the resource in your local website API
-#     new_resource = MentalHealthResources(title=title, description=description, type=type, url=url)
-#     db.session.add(new_resource)
-#     db.session.commit()
-    
-#     # Retrieve articles from the NHS API
-#     condition_id = "your_condition_id"  # Replace with the desired condition ID
-#     nhs_api_url = f"https://www.nhs.uk/mental-health/conditions/INT:{condition_id}"
-    
-#     response = requests.get(nhs_api_url)
-    
-#     if response.status_code == 200:
-#         articles = response.json()
-#         # Process the articles as needed
-        
-#         # Store the articles in your local website API
-#         for article in articles:
-#             new_article = Article(title=article["title"], description=article["description"], url=article["url"])
-#             db.session.add(new_article)
-        
-#         db.session.commit()
-        
-#         return jsonify(message='Your resource and articles are ready.'), 200
-#     else:
-#         return jsonify(error='Failed to retrieve articles.'), response.status_code
-
-# @api.route('/get_resource', methods=['GET'])
-# def get_resource():
-#             # Retrieve resources from your local website API
-#         resources = MentalHealthResources.query.all()
-#         resource_list = []
-#         for resource in resources:
-#             resource_data = {
-#                 'title': resource.title,
-#                 'description': resource.description,
-#                 'type': resource.type,
-#                 'url': resource.url
-#             }
-#             resource_list.append(resource_data)
-
-#         return jsonify(resources=resource_list), 200
-
 @api.route('/all_resources', methods=['GET'])
 def all_resource_articles():
     all_resources=MentalHealthResources.query.all()
     articles_list=list(map(lambda MentalHealthResources: MentalHealthResources.serialize(), all_resources))
     return jsonify(articles_list), 200
-
 
 @api.route('/meditation', methods=['GET', 'POST'])
 def meditation():

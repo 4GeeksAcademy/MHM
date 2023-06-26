@@ -5,6 +5,7 @@ export const ResourcePage = () => {
   const [condition, setCondition] = useState("");
   const [result, setResult] = useState(null);
   const [error, setError] = useState("");
+
   const [apiURL, setApiURL] = useState("");
 
   const searchCondition = () => {
@@ -49,7 +50,6 @@ export const ResourcePage = () => {
       });
   };
 
-  // Rest of the code...
 
   return (
     <div>
@@ -63,6 +63,7 @@ export const ResourcePage = () => {
       <button onClick={searchCondition}>Search</button>
 
       <div id="result">
+
         {apiURL && (
           <p>
             Website URL:{" "}
@@ -71,6 +72,7 @@ export const ResourcePage = () => {
             </a>
           </p>
         )}
+
         {result && (
           <div>
             <h2>{result.name}</h2>
@@ -91,6 +93,7 @@ export const ResourcePage = () => {
                 <p>{result.additionalInfo.content}</p>
               </div>
             )}
+
           </div>
         )}
         {error && <p>{error}</p>}

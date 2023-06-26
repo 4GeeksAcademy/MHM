@@ -15,6 +15,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					headers: {
 						'subscription-key': process.env.NHS_API_KEY,
 						'subscription-key':process.env.NHS_API_SECONDARY
+
 					}
 				})
 					.then(response => {

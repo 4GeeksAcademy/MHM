@@ -3,8 +3,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			token: null,
-			cf_url: 'https://3000-4geeksacademy-mhm-hw2ifnv8p5q.ws-us100.gitpod.io/',
-			cb_url: 'https://3001-4geeksacademy-mhm-hw2ifnv8p5q.ws-us100.gitpod.io/',
+			cf_url: 'https://3000-4geeksacademy-mhm-5wz03igkz37.ws-us100.gitpod.io',
+			cb_url: 'https://3001-4geeksacademy-mhm-5wz03igkz37.ws-us100.gitpod.io',
 			condition: [],
 			video: [],
 		},

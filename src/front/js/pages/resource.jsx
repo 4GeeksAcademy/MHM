@@ -77,7 +77,6 @@ export const ResourcePage = () => {
           <div>
             <h2>{result.name}</h2>
             <p>{result.description}</p>
-            {/* Display additional information as needed */}
             <button onClick={() => fetchAdditionalInfo("overview")}>
               Fetch Overview
             </button>

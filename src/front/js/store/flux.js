@@ -13,7 +13,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getCondition: async (condition) => {
 				axios.get(`https://api.nhs.uk/mental-health/conditions/${condition}`, {
 					headers: {
-						'subscription-key': process.env.NHS_API_KEY
+						'subscription-key': process.env.NHS_API_KEY,
+						'subscription-key':process.env.NHS_API_SECONDARY
 					}
 				})
 					.then(response => {

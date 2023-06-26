@@ -14,7 +14,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				axios.get(`https://api.nhs.uk/mental-health/conditions/${condition}`, {
 					headers: {
 						'subscription-key': process.env.NHS_API_KEY,
-						'subscription-key':process.env.NHS_API_SECONDARY
+						'subscription-key': process.env.NHS_API_SECONDARY
 
 					}
 				})
@@ -102,6 +102,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch (error) {
 					console.error(error);
 				}
+			},
+			logout: async (email, password) => {
+				const cf_url = getStore.cf_url
+				const token = sessionStorage.removeItem("token");
+				setStore({ token: null });
+				window.location.href = "/";
 			},
 		}
 	};

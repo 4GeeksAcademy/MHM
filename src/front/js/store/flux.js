@@ -1,25 +1,25 @@
 const axios = require('axios');
 const getState = ({ getStore, getActions, setStore }) => {
-
 	return {
 		store: {
 			token: null,
-			cf_url: 'https://3000-4geeksacademy-mhm-xwbjejb9wmj.ws-us100.gitpod.io',
-			cb_url: 'https://3001-4geeksacademy-mhm-xwbjejb9wmj.ws-us100.gitpod.io',
+			cf_url: 'https://3000-4geeksacademy-mhm-5wz03igkz37.ws-us100.gitpod.io',
+			cb_url: 'https://3001-4geeksacademy-mhm-5wz03igkz37.ws-us100.gitpod.io',
 			condition: [],
 			video: [],
 		},
 		actions: {
 			// Use getActions to call a function within a function
-			getCondition: async () => {
-				axios.get('https://www.nhs.uk/mental-health/conditions/INT:{condition_id}', {
+			getCondition: async (condition) => {
+				axios.get(`https://api.nhs.uk/mental-health/conditions/${condition}`, {
 					headers: {
-						'subscription-key': 'cc1c63174d5347d1ac10dd551d783a2f'
+						'subscription-key': process.env.NHS_API_KEY,
+						'subscription-key': process.env.NHS_API_SECONDARY
+
 					}
 				})
 					.then(response => {
-						const articles = response.data.articles;
-						console.log(articles);
+						setStore({ condition: response.data })
 					})
 					.catch(error => {
 						console.error(error);
@@ -55,12 +55,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					password: password,
 				};
 				try {
-					const response = await axios.post(url, data, {
-						headers: {
-							"Content-type": "application/json",
-							"Assess-Control-Allow_Origin": "*"
-						},
-					});
+					const response = await axios.post(url, data)
 
 					if (response.status !== 200) {
 						alert("There has been an error");
@@ -77,7 +72,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch (error) {
 					console.error(error);
 				}
-
 			},
 
 			login: async (email, password) => {
@@ -91,8 +85,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				try {
 					const response = await axios.post(url, data, {
 						headers: {
-							"Content-Type": "application/json",
-							"Access-Control-Allow-Origin": "*",
+							"Content-Type": "application/json"
 						},
 					});
 
@@ -103,10 +96,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					const responseData = response.data;
 					sessionStorage.setItem("token", responseData.access_token);
-					responseData.favorites.forEach(f => {
-						f.item = f.item.replace(/'/g, '"');
-						f.item = JSON.parse(f.item);
-					});
 
 					setStore({ token: responseData.access_token, favorites: responseData.favorites, user_name: responseData.user_name });
 					return true;
@@ -114,7 +103,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.error(error);
 				}
 			},
-
+			logout: async (email, password) => {
+				const cf_url = getStore.cf_url
+				const token = sessionStorage.removeItem("token");
+				setStore({ token: null });
+				window.location.href = "/";
+			},
 		}
 	};
 };

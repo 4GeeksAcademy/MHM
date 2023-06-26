@@ -5,6 +5,7 @@ from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required 
 from api.models import db, User, MentalHealthResources, JournalEntries
 import datetime
+import requests
 
 api = Blueprint('api', __name__)
 
@@ -49,20 +50,25 @@ def login():
     access_token = create_access_token(identity= user.id, expires_delta= expiration)
     return jsonify({'message': 'Logged in successfully.', 'access_token':access_token}), 200
 
-@api.route('/resource', methods=['GET', 'POST'])
-def resource():
-    get_resource=request.get_json()
-    title=get_resource["title"]
-    description=get_resource["description"]
-    type=get_resource["type"]
-    url=get_resource["url"]
-    resource=MentalHealthResources.query.filter_by(title=title).first()
+@api.route('/get_condition/<condition>', methods=['GET'])
+def get_condition(condition):
+    url = f'https://api.nhs.uk/mental-health/conditions/{condition}'
+    headers = {'subscription-key': os.environ.get('NHS_API_KEY')}
+    
+    try:
+        response = requests.get(url, headers=headers)
+        response.raise_for_status()
+        
+        data = response.json()
+        return jsonify(data)
+    except requests.exceptions.RequestException as e:
+        return jsonify({'error': 'Internal server error'})
 
-    new_resource=MentalHealthResources(title=get_resource["title"])
-                                       
-    db.session.add(new_resource)
-    db.session.commit()
-    return jsonify(message='Your resource is ready.'), 200
+@api.route('/all_resources', methods=['GET'])
+def all_resource_articles():
+    all_resources=MentalHealthResources.query.all()
+    articles_list=list(map(lambda MentalHealthResources: MentalHealthResources.serialize(), all_resources))
+    return jsonify(articles_list), 200
 
 @api.route('/meditation', methods=['GET', 'POST'])
 def meditation():

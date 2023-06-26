@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { Context } from "../store/appContext";
 
@@ -6,14 +7,15 @@ export const Signup = () => {
     const { store, actions } = useContext(Context);
     const [email, setemail] = useState("");
     const [password, setpassword] = useState("");
+    const navigate = useNavigate()
 
     const token = sessionStorage.getItem; ("token");
     console.log(token);
-    const handleClick = (e) => {
+    const handleClick = async (e) => {
         e.preventDefault();
-        console.log(e.target)
-        actions.createUser(email, password)
-    }
+        await actions.createUser(email, password);
+        navigate("/"); 
+    };
 
     return (
         <div className="loginCont">

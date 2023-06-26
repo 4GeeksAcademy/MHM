@@ -9,16 +9,13 @@ export const Home = () => {
 	const [password, setPassword] = useState('');
 	const navigate = useNavigate()
 
-	const token = sessionStorage.getItem("token");
-	console.log(token);
-	const handleClick = (e) => {
+	const handleClick = async (e) => {
 		e.preventDefault();
-		console.log(e.target)
-		actions.login(email, password)
+		await actions.login(email, password);
+		if(store.token){
+			navigate('/mainpage');
+		};
 	}
-	useEffect(() => {
-		if (store.token) navigate("/mainpage")
-	}, [])
 
 	return (
 		<div className="loginCont">
@@ -30,10 +27,10 @@ export const Home = () => {
 					<h1>Login</h1>
 
 					<div className="input-field">
-						<input className="myInput" type={"text"} placeholder={'Email'} value={email} onChange={(e) => setEmail(e.target.value)} />
+						<input className="myInput" type="text" placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)} />
 					</div>
 					<div className="input-field">
-						<input className="myInput" type={'password'} placeholder={'Password'} value={password} onChange={(e) => setPassword(e.target.value)} />
+						<input className="myInput" type='password' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)} />
 					</div>
 				</div>
 				<div className="loginFormAction">

@@ -3,8 +3,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			token: null,
-			cf_url: 'https://3000-4geeksacademy-mhm-hw2ifnv8p5q.ws-us100.gitpod.io/',
-			cb_url: 'https://3001-4geeksacademy-mhm-hw2ifnv8p5q.ws-us100.gitpod.io/',
+			cf_url: 'https://r-moore98-ideal-space-engine-66775xw6qvvc46gw-3000.preview.app.github.dev/',
+			cb_url: 'https://r-moore98-ideal-space-engine-66775xw6qvvc46gw-3001.preview.app.github.dev/',
 			condition: [],
 			video: [],
 		},

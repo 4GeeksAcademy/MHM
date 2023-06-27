@@ -5,6 +5,7 @@ from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required 
 from api.models import db, User, MentalHealthResources, JournalEntries
 import datetime
+import requests
 
 api = Blueprint('api', __name__)
 
@@ -62,8 +63,6 @@ def get_condition(condition):
         return jsonify(data)
     except requests.exceptions.RequestException as e:
         return jsonify({'error': 'Internal server error'})
-
-
 
 @api.route('/all_resources', methods=['GET'])
 def all_resource_articles():

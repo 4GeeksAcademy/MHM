@@ -1,0 +1,98 @@
+/* journalapp.css */
+
+/* General styles */
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+label {
+    margin-bottom: 5px;
+    color: #333;
+}
+
+input,
+textarea {
+    padding: 8px;
+    margin-bottom: 10px;
+    width: 300px;
+    box-sizing: border-box;
+}
+
+textarea {
+    height: 100px;
+}
+
+#journalForm button,
+#searchForm button {
+    padding: 6px 12px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    width: fit-content;
+}
+
+#journalForm button:hover,
+#searchForm button:hover {
+    background-color: #45a049;
+}
+
+p {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 10px 0;
+}
+
+/* Styles for the search result */
+.search-result {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+.search-result h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.search-result-entry {
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex: 1;
+}
+
+.search-result-entry p {
+    margin: 5px 0;
+}
+
+.search-result-entry hr {
+    margin: 10px 0;
+    border: 0;
+    border-top: 1px solid #ccc;
+}
+
+/* Responsive layout for search result entries */
+@media screen and (max-width: 767px) {
+    .search-result {
+        flex-direction: column;
+    }
+}

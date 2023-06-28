@@ -10,8 +10,9 @@ export const MainPage = () => {
         <div className="Navbar">
             <Navbar />
             <div>
+                <h1>Welcome to the main Page wahere you can navigate to where you need</h1>
+                
 
-                <p>MainPage</p>
                 <button
                     onClick={actions.logout}
                     className="btn btn-warning"

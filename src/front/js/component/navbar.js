@@ -4,10 +4,10 @@ import "../../styles/navbar.css";
 import context from "react-bootstrap/esm/AccordionContext";
 
 export const Navbar = () => {
-	const { store, actions } = useContext(context) 
+	const { store, actions } = useContext(context)
 	return (
 		<nav className="navbar navbar-expand-lg navbar-custom">
-			<Link className="navbar-brand" to="/">
+			<Link className="navbar-brand" to="/mainpage">
 				<img
 					className="navbar-image"
 					src="https://cdn11.bigcommerce.com/s-dl22izwaan/images/stencil/1280x1280/products/1048/18975/2215_1k__02095.1625592307.jpg?c=1"
@@ -44,7 +44,7 @@ export const Navbar = () => {
 					</li>
 				</ul>
 			</div>
-				
+
 		</nav>
 	);
 };

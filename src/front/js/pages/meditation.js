@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { Navbar } from "../component/navbar";
 
 export const Meditation = () => {
     const [condition, setCondition] = useState("");
@@ -32,6 +33,7 @@ export const Meditation = () => {
 
     return (
         <div>
+            <Navbar />
             <h1>Welcome to the meditation page!</h1>
             <h2>You can watch relaxation videos by searching on YouTube.</h2>
             <input

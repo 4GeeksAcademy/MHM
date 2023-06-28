@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Navbar } from "../component/navbar";
+
+import "../../styles/ResourcePage.css";
 
 export const ResourcePage = () => {
   const [condition, setCondition] = useState("");
@@ -50,52 +53,76 @@ export const ResourcePage = () => {
       });
   };
 
-
   return (
-    <div>
-      <h1>Condition Search</h1>
-      <input
-        type="text"
-        value={condition}
-        onChange={(e) => setCondition(e.target.value)}
-        placeholder="Enter a condition"
-      />
-      <button onClick={searchCondition}>Search</button>
+    <div className="resource-page">
+    <Navbar />
 
-      <div id="result">
+      <div className="resource-content">
+        <h1>Welcome to the Resource Page!</h1>
+        <h2 className="resource-page-title">Condition Search</h2>
+        <div className="container">
+          <div className="input-group mb-3">
+            <input
+              type="text"
+              className="form-control"
+              value={condition}
+              onChange={(e) => setCondition(e.target.value)}
+              placeholder="Enter a condition"
+            />
+            <div className="input-group-append">
+              <button
+                className="btn btn-success"
+                type="button"
+                onClick={searchCondition}
+              >
+                Search
+              </button>
+            </div>
+          </div>
 
-        {apiURL && (
-          <p>
-            Website URL:{" "}
-            <a href={apiURL} target="_blank" rel="noopener noreferrer">
-              {apiURL}
-            </a>
-          </p>
-        )}
-
-        {result && (
-          <div>
-            <h2>{result.name}</h2>
-            <p>{result.description}</p>
-            <button onClick={() => fetchAdditionalInfo("overview")}>
-              Fetch Overview
-            </button>
-            <button onClick={() => fetchAdditionalInfo("symptoms")}>
-              Fetch Symptoms
-            </button>
-            <button onClick={() => fetchAdditionalInfo("treatment")}>
-              Fetch Treatment
-            </button>
-            {result.additionalInfo && (
-              <div>
-                <h3>{result.additionalInfo.title}</h3>
-                <p>{result.additionalInfo.content}</p>
-              </div>
+          <div id="result">
+            {apiURL && (
+              <p>
+                Website URL:{" "}
+                <a href={apiURL} target="_blank" rel="noopener noreferrer">
+                  {apiURL}
+                </a>
+              </p>
             )}
 
+            {result && (
+              <div>
+                <h2>{result.name}</h2>
+                <p>{result.description}</p>
+                <button
+                  className="btn btn-success"
+                  onClick={() => fetchAdditionalInfo("overview")}
+                >
+                  Fetch Overview
+                </button>
+                <button
+                  className="btn btn-success"
+                  onClick={() => fetchAdditionalInfo("symptoms")}
+                >
+                  Fetch Symptoms
+                </button>
+                <button
+                  className="btn btn-success"
+                  onClick={() => fetchAdditionalInfo("treatment")}
+                >
+                  Fetch Treatment
+                </button>
+                {result.additionalInfo && (
+                  <div>
+                    <h3>{result.additionalInfo.title}</h3>
+                    <p>{result.additionalInfo.content}</p>
+                  </div>
+                )}
+              </div>
+            )}
+            {error && <p>{error}</p>}
           </div>
-        )}
-        {error && <p>{error}</p>}
+        </div>
       </div>
     </div>
   );

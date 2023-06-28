@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import "../../styles/journalapp.css"
+import { Navbar } from "../component/navbar";
 
 export const JournalApp = () => {
   const [date, setDate] = useState("");
@@ -13,7 +15,7 @@ export const JournalApp = () => {
     const fetchJournalEntries = async () => {
       try {
         const response = await fetch(
-          "https://3001-4geeksacademy-mhm-5wz03igkz37.ws-us100.gitpod.io/api/get_journal"
+          "https://3001-4geeksacademy-mhm-4ltkrrko9xc.ws-us101.gitpod.io/api/get_journal"
         );
 
         if (!response.ok) {
@@ -32,12 +34,12 @@ export const JournalApp = () => {
 
   const handleClick = async (e) => {
     e.preventDefault();
-  
+
     const data = { date, mood, content };
-  
+
     try {
       const response = await fetch(
-        "https://3001-4geeksacademy-mhm-5wz03igkz37.ws-us100.gitpod.io/api/post_journal",
+        "https://3001-4geeksacademy-mhm-4ltkrrko9xc.ws-us101.gitpod.io/api/post_journal",
         {
           method: "POST",
           headers: {
@@ -46,13 +48,13 @@ export const JournalApp = () => {
           body: JSON.stringify(data),
         }
       );
-  
+
       if (!response.ok) {
         throw new Error("Error creating entry");
       }
-  
+
       console.log("Entry created successfully!");
-  
+
       // Reset the input fields
       setDate("");
       setMood("");
@@ -64,17 +66,21 @@ export const JournalApp = () => {
       console.error("Error creating entry:", error);
     }
   };
-  
+
   const handleSearch = (e) => {
     e.preventDefault();
 
-    const foundEntries = journalEntries.filter((entry) => entry.date === searchDate);
+    const foundEntries = journalEntries.filter(
+      (entry) => entry.date === searchDate
+    );
 
     setSearchedEntries(foundEntries);
   };
 
   return (
     <div>
+      <Navbar /> 
+      <h1>Welcome to the Journal Page!</h1>
       <form id="journalForm">
         <label htmlFor="date">Date:</label>
         <input

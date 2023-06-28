@@ -1,3 +1,6 @@
 /* 
     General Styles used on every website (Don't Repeat Yourself)
 */
+div {
+    background-image: url(https://img.freepik.com/free-vector/moss-green-abstract-background-vector_53876-136091.jpg?w=1380&t=st=1687968765~exp=1687969365~hmac=1b4c1c6a24f6d5b7d3db7bf448c3e96cb5ecb16c850e5e8f141a867fba285691);
+}

@@ -1,0 +1,41 @@
+.navbar-custom {
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-image {
+    width: 50px;
+    height: auto;
+}
+
+.navbar-toggler {
+    border: none;
+    background-color: transparent;
+    color: #000;
+    font-size: 24px;
+}
+
+.navbar-toggler:focus,
+.navbar-toggler:hover {
+    outline: none;
+    color: #333;
+}
+
+.navbar-nav .nav-item .nav-link {
+    color: #333;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    margin-right: 10px;
+    text-decoration: none;
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+    color: #666;
+}
+
+.navbar-custom {
+
+    /* Update the background color to green */
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

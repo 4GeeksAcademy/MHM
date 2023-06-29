@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { Card, CardBody, Row, Col } from "reactstrap";
 import "../../styles/journalapp.css";
-import { Navbar } from "../component/navbar";
 
 export const JournalApp = () => {
   const [date, setDate] = useState("");
@@ -15,7 +15,7 @@ export const JournalApp = () => {
     const fetchJournalEntries = async () => {
       try {
         const response = await fetch(
-          "https://3001-4geeksacademy-mhm-spccbh0k44a.ws-us101.gitpod.io/api/get_journal"
+          "https://3001-4geeksacademy-mhm-wimp591pss4.ws-us101.gitpod.io/api/get_journal"
         );
 
         if (!response.ok) {
@@ -39,7 +39,7 @@ export const JournalApp = () => {
 
     try {
       const response = await fetch(
-        "https://3001-4geeksacademy-mhm-spccbh0k44a.ws-us101.gitpod.io/api/post_journal",
+        "https://3001-4geeksacademy-mhm-wimp591pss4.ws-us101.gitpod.io/api/post_journal",
         {
           method: "POST",
           headers: {
@@ -78,77 +78,98 @@ export const JournalApp = () => {
   };
 
   return (
-    <div>
-      <Navbar />
+    <div className="container">
       <h1>Welcome to the Journal Page!</h1>
-      <form id="journalForm">
-        <label htmlFor="date">Date:</label>
-        <input
-          type="text"
-          id="date"
-          name="date"
-          required
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
-        />
-
-        <label htmlFor="mood">Mood:</label>
-        <input
-          type="text"
-          id="mood"
-          name="mood"
-          value={mood}
-          onChange={(e) => setMood(e.target.value)}
-        />
-
-        <label htmlFor="content">Content:</label>
-        <textarea
-          id="content"
-          name="content"
-          required
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-        ></textarea>
-
-        <button type="submit" onClick={(e) => handleClick(e)}>
+      <Row>
+        <Col md={6}>
+          <form id="searchForm" className="mb-4">
+            <div className="mb-3">
+              <label htmlFor="searchDate" className="form-label">
+                Search Date:
+              </label>
+              <input
+                type="text"
+                id="searchDate"
+                name="searchDate"
+                value={searchDate}
+                onChange={(e) => setSearchDate(e.target.value)}
+                className="form-control"
+              />
+            </div>
+            <button type="submit" onClick={(e) => handleSearch(e)} className="btn btn-primary">
+              Search
+            </button>
+          </form>
+        </Col>
+        <Col md={6}>
+          {searchedEntries.length > 0 && (
+            <Card>
+              <CardBody>
+                <h3>Search Result:</h3>
+                {searchedEntries.map((entry) => (
+                  <div className="search-result-entry" key={entry.id}>
+                    <p>Date: {entry.date}</p>
+                    <p>Mood: {entry.mood}</p>
+                    <p>Content: {entry.content}</p>
+                  </div>
+                ))}
+              </CardBody>
+            </Card>
+          )}
+        </Col>
+      </Row>
+      <form id="journalForm" className="mb-4">
+        <div className="mb-3">
+          <label htmlFor="date" className="form-label">
+            Date:
+          </label>
+          <input
+            type="text"
+            id="date"
+            name="date"
+            required
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+            className="form-control"
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="mood" className="form-label">
+            Mood:
+          </label>
+          <input
+            type="text"
+            id="mood"
+            name="mood"
+            value={mood}
+            onChange={(e) => setMood(e.target.value)}
+            className="form-control"
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="content" className="form-label">
+            Content:
+          </label>
+          <textarea
+            id="content"
+            name="content"
+            required
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            className="form-control"
+          ></textarea>
+        </div>
+        <button type="submit" onClick={(e) => handleClick(e)} className="btn btn-primary">
           Submit
         </button>
       </form>
 
       {isEntrySubmitted && (
-        <div>
+        <div className="alert alert-success">
           <p>Journal entry submitted successfully!</p>
         </div>
       )}
 
-      <form id="searchForm">
-        <label htmlFor="searchDate">Search Date:</label>
-        <input
-          type="text"
-          id="searchDate"
-          name="searchDate"
-          value={searchDate}
-          onChange={(e) => setSearchDate(e.target.value)}
-        />
-
-        <button type="submit" onClick={(e) => handleSearch(e)}>
-          Search
-        </button>
-      </form>
-
-      {searchedEntries.length > 0 && (
-        <div>
-          <h3>Search Result:</h3>
-          {searchedEntries.map((entry) => (
-            <div key={entry.id}>
-              <p>Date: {entry.date}</p>
-              <p>Mood: {entry.mood}</p>
-              <p>Content: {entry.content}</p>
-              <hr />
-            </div>
-          ))}
-        </div>
-      )}
     </div>
   );
 };

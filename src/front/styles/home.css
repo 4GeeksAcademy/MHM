@@ -17,3 +17,16 @@
 .input-field {
     margin-top: 30px;
 }
+
+.title {
+    margin-top: 45px; /* Adjust the margin-top value to move the h1 title down */
+}
+
+.subtitle {
+    margin-top: 20px; /* Adjust the margin-top value to move the h2 subtitles down */
+}
+
+.loginForm a {
+    color: white;
+}
+

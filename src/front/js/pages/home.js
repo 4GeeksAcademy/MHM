@@ -12,16 +12,16 @@ export const Home = () => {
 	const handleClick = async (e) => {
 		e.preventDefault();
 		await actions.login(email, password);
-		if(store.token){
+		if (store.token) {
 			navigate('/mainpage');
 		};
 	}
 
 	return (
 		<div className="loginCont">
-			<h1>Welcome to our website!</h1>
-			<h2>We are here to connect you to other people to help with mental health</h2>
-			<h2>If you would like to connect with other people, you can login and if you don't have a account you can make one below</h2>
+			<h1 className="title">Welcome to our website!</h1>
+			<h2 className="subtitle">We are here to connect you to other people to help with mental health</h2>
+			<h2 className="subtitle">If you would like to connect with other people, you can login, and if you don't have an account, you can make one below</h2>
 			<form className="loginForm">
 				<div className="loginFormContent">
 					<h1>Login</h1>

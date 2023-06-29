@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../../styles/journalapp.css"
+import "../../styles/journalapp.css";
 import { Navbar } from "../component/navbar";
 
 export const JournalApp = () => {
@@ -15,7 +15,7 @@ export const JournalApp = () => {
     const fetchJournalEntries = async () => {
       try {
         const response = await fetch(
-          "https://3001-4geeksacademy-mhm-4ltkrrko9xc.ws-us101.gitpod.io/api/get_journal"
+          "https://3001-4geeksacademy-mhm-tzsuh96ltgu.ws-us101.gitpod.io/api/get_journal"
         );
 
         if (!response.ok) {
@@ -39,7 +39,7 @@ export const JournalApp = () => {
 
     try {
       const response = await fetch(
-        "https://3001-4geeksacademy-mhm-4ltkrrko9xc.ws-us101.gitpod.io/api/post_journal",
+        "https://3001-4geeksacademy-mhm-tzsuh96ltgu.ws-us101.gitpod.io/api/post_journal",
         {
           method: "POST",
           headers: {
@@ -79,7 +79,7 @@ export const JournalApp = () => {
 
   return (
     <div>
-      <Navbar /> 
+      <Navbar />
       <h1>Welcome to the Journal Page!</h1>
       <form id="journalForm">
         <label htmlFor="date">Date:</label>

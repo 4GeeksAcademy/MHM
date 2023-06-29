@@ -1,0 +1,11 @@
+.main-feature {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+  
+  .main-feature-image {
+    max-width: 40%;
+    height: auto;
+  }
+  

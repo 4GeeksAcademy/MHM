@@ -3,8 +3,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			token: null,
-			cf_url: 'https://r-moore98-ideal-space-engine-66775xw6qvvc46gw-3000.preview.app.github.dev/',
-			cb_url: 'https://r-moore98-ideal-space-engine-66775xw6qvvc46gw-3001.preview.app.github.dev/',
+			cf_url: 'https://3000-4geeksacademy-mhm-tzsuh96ltgu.ws-us101.gitpod.io',
+			cb_url: 'https://3001-4geeksacademy-mhm-tzsuh96ltgu.ws-us101.gitpod.io',
 			condition: [],
 			video: [],
 		},
@@ -14,7 +14,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				axios.get(`https://api.nhs.uk/mental-health/conditions/${condition}`, {
 					headers: {
 						'subscription-key': process.env.NHS_API_KEY,
-						'subscription-key': process.env.NHS_API_SECONDARY
+						'subscription-key': process.env.NHS_API_KEY_SECONDARY
 
 					}
 				})

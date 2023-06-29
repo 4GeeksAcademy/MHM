@@ -4,7 +4,6 @@ import "../../styles/navbar.css";
 import context from "react-bootstrap/esm/AccordionContext";
 
 export const Navbar = () => {
-	const { store, actions } = useContext(context)
 	return (
 		<nav className="navbar navbar-expand-lg navbar-custom">
 			<Link className="navbar-brand" to="/mainpage">

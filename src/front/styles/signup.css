@@ -1,4 +1,4 @@
-.loginForm {
+.signupForm {
     height: auto;
     width: 400px;
     background-color: rgba(255, 255, 255, 0.13);
@@ -6,6 +6,7 @@
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
+    margin-top: 300px; /* Adjust the margin-top value to move the content down */
     border-radius: 10px;
     backdrop-filter: blur(10px);
     border: 2px solid rgba(255, 255, 255, 0.1);

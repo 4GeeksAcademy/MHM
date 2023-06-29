@@ -20,10 +20,10 @@ export const Signup = () => {
 
     return (
         <Container className="container">
-            <div className="loginCont">
-                <form className="loginForm">
+            <div className="signupCont">
+                <form className="signupForm">
                     <div className="loginFormContent">
-                        <h1 className="sign">Sign Up for account </h1>
+                        <h1 className="sign">Sign Up for Account </h1>
                         <div className="input-field">
                             <input className="myInput" type={"text"} placeholder={'Email'} value={email} onChange={(e) => setemail(e.target.value)} />
                         </div>

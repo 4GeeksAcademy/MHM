@@ -52,7 +52,7 @@ export const Meditation = () => {
                     </div>
                 </div>
 
-                {error && <p>{error}</p>}
+                {error && <p className="error">{error}</p>}
             </div>
         </div>
     );

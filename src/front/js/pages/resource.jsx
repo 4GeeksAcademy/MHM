@@ -55,7 +55,7 @@ export const ResourcePage = () => {
     <div className="resource-page">
       <Navbar />
       <div className="resource-content">
-        <h1>Welcome to the Resource Page!</h1>
+        <h1 className="resource_welcome">Welcome to the Resource Page!</h1>
         <h2 className="resource-page-title">Condition Search</h2>
         <div className="container">
           <form>

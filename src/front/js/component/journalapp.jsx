@@ -78,13 +78,13 @@ export const JournalApp = () => {
   };
 
   return (
-    <div className="container">
-      <h1>Welcome to the Journal Page!</h1>
+    <div className="journal_container">
+      <h1 className="journalPage">Welcome to the Journal Page!</h1>
       <Row>
         <Col md={6}>
           <form id="searchForm" className="mb-4">
             <div className="mb-3">
-              <label htmlFor="searchDate" className="form-label">
+              <label htmlFor="searchDate" className="journal_form-label">
                 Search Date:
               </label>
               <input

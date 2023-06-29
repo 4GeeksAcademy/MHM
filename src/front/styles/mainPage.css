@@ -1,11 +1,15 @@
 .main-feature {
-    display: flex;
-    justify-content: center;
-    margin-top: 2rem;
-  }
-  
-  .main-feature-image {
-    max-width: 40%;
-    height: auto;
-  }
-  
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.mainTitle {
+  text-align: center;
+  color: #333;
+}
+
+.main-feature-image {
+  max-width: 40%;
+  height: auto;
+}

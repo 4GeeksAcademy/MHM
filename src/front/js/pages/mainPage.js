@@ -9,9 +9,9 @@ export const MainPage = () => {
     <div className="Navbar">
       <Navbar />
       <div>
-        <h1>Welcome to the Main Page!</h1>
-        <h2>Use this page to navigate to your desired function!</h2>
-        
+        <h1 className="mainTitle">Welcome to the Main Page!</h1>
+        <h2 className="main_page">Use this page to navigate to your desired function!</h2>
+
         <div className="main-feature">
           <img
             src="https://www.aucegypt.edu/sites/default/files/styles/large_widget/public/2022-10/966280794-website_widgets_mental_health_campaign_04-10.jpg?itok=aP1SXBaj"

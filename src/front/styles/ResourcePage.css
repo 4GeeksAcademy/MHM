@@ -62,7 +62,7 @@ button:hover {
 
 p {
   margin-bottom: 10px;
-  color: #333;
+  color: white;
 }
 
 hr {
@@ -112,4 +112,16 @@ hr {
 
 .website-link {
   color: white;
+}
+
+h1 {
+  color:#fff;
+}
+
+.resource_welcome {
+  color:#fff;
+}
+
+.resource-page-title {
+  color:#fff
 }

@@ -19,7 +19,7 @@ export const Home = () => {
 
 	return (
 		<div className="loginCont">
-			<h1 className="title">Welcome to our website!</h1>
+			<h1 className="title">Welcome to <u>Mental Health Mate</u>!</h1>
 			<h2 className="subtitle">We are here to connect you to other people to help with mental health</h2>
 			<h2 className="subtitle">If you would like to connect with other people, you can login, and if you don't have an account, you can make one below</h2>
 			<form className="loginForm">

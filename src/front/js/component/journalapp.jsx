@@ -16,7 +16,7 @@ export const JournalApp = () => {
     const fetchJournalEntries = async () => {
       try {
         const response = await fetch(
-          "https://3001-4geeksacademy-mhm-93h0se65wcn.ws-us101.gitpod.io/api/get_journal"
+          "https://3001-4geeksacademy-mhm-fhe4vyifciv.ws-us101.gitpod.io/api/get_journal"
         );
 
         if (!response.ok) {
@@ -40,7 +40,7 @@ export const JournalApp = () => {
 
     try {
       const response = await fetch(
-        "https://3001-4geeksacademy-mhm-93h0se65wcn.ws-us101.gitpod.io/api/post_journal",
+        "https://3001-4geeksacademy-mhm-fhe4vyifciv.ws-us101.gitpod.io/api/post_journal",
         {
           method: "POST",
           headers: {

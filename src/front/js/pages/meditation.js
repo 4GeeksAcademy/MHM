@@ -47,7 +47,7 @@ export const Meditation = () => {
                         <iframe
                             className="video-iframe"
                             allowFullScreen
-                            src={`https://www.youtube.com/embed/zuEW_5eL90s`}
+                            src={`https://www.youtube.com/embed/TZGXH1fbT8Y`}
                         />
                     </div>
                 </div>

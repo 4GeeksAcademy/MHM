@@ -109,3 +109,7 @@ hr {
     align-items: stretch;
   }
 }
+
+.website-link {
+  color: white;
+}

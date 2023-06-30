@@ -81,7 +81,7 @@ export const ResourcePage = () => {
             {apiURL && (
               <p>
                 Website URL:{" "}
-                <a href={apiURL} target="_blank" rel="noopener noreferrer">
+                <a href={apiURL} target="_blank" rel="noopener noreferrer" className="website-link">
                   {apiURL}
                 </a>
               </p>

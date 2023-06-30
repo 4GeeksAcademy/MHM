@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Card, CardBody, Row, Col } from "reactstrap";
+import { Navbar } from "../component/navbar";
 import "../../styles/journalapp.css";
 
 export const JournalApp = () => {
@@ -15,7 +16,7 @@ export const JournalApp = () => {
     const fetchJournalEntries = async () => {
       try {
         const response = await fetch(
-          "https://3001-4geeksacademy-mhm-wimp591pss4.ws-us101.gitpod.io/api/get_journal"
+          "https://3001-4geeksacademy-mhm-93h0se65wcn.ws-us101.gitpod.io/api/get_journal"
         );
 
         if (!response.ok) {
@@ -39,7 +40,7 @@ export const JournalApp = () => {
 
     try {
       const response = await fetch(
-        "https://3001-4geeksacademy-mhm-wimp591pss4.ws-us101.gitpod.io/api/post_journal",
+        "https://3001-4geeksacademy-mhm-93h0se65wcn.ws-us101.gitpod.io/api/post_journal",
         {
           method: "POST",
           headers: {
@@ -79,12 +80,71 @@ export const JournalApp = () => {
 
   return (
     <div className="journal_container">
-      <h1 className="journalPage">Welcome to the Journal Page!</h1>
+      <Navbar className="navbar-journal" />
+      <h1>Welcome to the Journal Page!</h1>
+
       <Row>
-        <Col md={6}>
+        <Col xs="6">
+          <form id="journalForm" className="mb-4">
+            <div className="mb-3">
+              <label htmlFor="date" className="form-label">
+                Date:
+              </label>
+              <input
+                type="text"
+                id="date"
+                name="date"
+                required
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+                className="form-control"
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="mood" className="form-label">
+                Mood:
+              </label>
+              <input
+                type="text"
+                id="mood"
+                name="mood"
+                value={mood}
+                onChange={(e) => setMood(e.target.value)}
+                className="form-control"
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="content" className="form-label">
+                Content:
+              </label>
+              <textarea
+                id="content"
+                name="content"
+                required
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
+                className="form-control"
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              onClick={(e) => handleClick(e)}
+              className="btn btn-primary"
+            >
+              Submit
+            </button>
+          </form>
+
+          {isEntrySubmitted && (
+            <div className="alert alert-success">
+              <p>Journal entry submitted successfully!</p>
+            </div>
+          )}
+        </Col>
+        <Col xs="6">
           <form id="searchForm" className="mb-4">
             <div className="mb-3">
-              <label htmlFor="searchDate" className="journal_form-label">
+              <label htmlFor="searchDate" className="form-label">
                 Search Date:
               </label>
               <input
@@ -96,12 +156,15 @@ export const JournalApp = () => {
                 className="form-control"
               />
             </div>
-            <button type="submit" onClick={(e) => handleSearch(e)} className="btn btn-primary">
+            <button
+              type="submit"
+              onClick={(e) => handleSearch(e)}
+              className="btn btn-primary"
+            >
               Search
             </button>
           </form>
-        </Col>
-        <Col md={6}>
+
           {searchedEntries.length > 0 && (
             <Card>
               <CardBody>
@@ -111,6 +174,7 @@ export const JournalApp = () => {
                     <p>Date: {entry.date}</p>
                     <p>Mood: {entry.mood}</p>
                     <p>Content: {entry.content}</p>
+                    <hr />
                   </div>
                 ))}
               </CardBody>
@@ -118,58 +182,6 @@ export const JournalApp = () => {
           )}
         </Col>
       </Row>
-      <form id="journalForm" className="mb-4">
-        <div className="mb-3">
-          <label htmlFor="date" className="form-label">
-            Date:
-          </label>
-          <input
-            type="text"
-            id="date"
-            name="date"
-            required
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-            className="form-control"
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="mood" className="form-label">
-            Mood:
-          </label>
-          <input
-            type="text"
-            id="mood"
-            name="mood"
-            value={mood}
-            onChange={(e) => setMood(e.target.value)}
-            className="form-control"
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="content" className="form-label">
-            Content:
-          </label>
-          <textarea
-            id="content"
-            name="content"
-            required
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            className="form-control"
-          ></textarea>
-        </div>
-        <button type="submit" onClick={(e) => handleClick(e)} className="btn btn-primary">
-          Submit
-        </button>
-      </form>
-
-      {isEntrySubmitted && (
-        <div className="alert alert-success">
-          <p>Journal entry submitted successfully!</p>
-        </div>
-      )}
-
     </div>
   );
 };

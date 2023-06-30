@@ -102,3 +102,25 @@ hr {
         align-items: stretch;
     }
 }
+
+.navbar-journal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    background-color: #011301;
+    padding: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  
+  .navbar-journal .navbar-brand {
+    margin-left: 10px;
+  }
+  
+  .navbar-journal .navbar-brand img {
+    height: 30px;
+    width: auto;
+  }

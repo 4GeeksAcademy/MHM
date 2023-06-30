@@ -6,7 +6,7 @@ import "../../styles/mainPage.css";
 export const MainPage = () => {
   const { store, actions } = useContext(Context);
   return (
-    <div className="Navbar">
+    <div className="main-page-container">
       <Navbar />
       <div>
         <h1 className="mainTitle">Welcome to the Main Page!</h1>
